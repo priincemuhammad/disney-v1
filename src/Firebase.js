@@ -1,5 +1,4 @@
-import { initializeApp } from "firebase/app";
-import { getFirestore, collection } from "firebase/firestore";
+import firebase from "firebase";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAdee0aAoPBF-BskKhK8o86bcMbmcMH2MA",
@@ -10,11 +9,12 @@ const firebaseConfig = {
   appId: "1:121634217860:web:af29b80df9594ea76c07d1",
 };
 
-// init firebase app
-initializeApp(firebaseConfig);
-// init services
-const db = getFirestore();
-// collection ref
-const colRef = collection(db, "movies");
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+const db = firebaseApp.firestore();
+const auth = firebase.auth();
+const provider = new firebase.auth.GoogleAuthProvider();
+const storege = firebase.storage();
 
-export default colRef;
+export { auth, provider, storege };
+
+export default db;

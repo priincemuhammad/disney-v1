@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-function Login() {
+const Login = () => {
   return (
     <Container>
       <Contents>
@@ -16,7 +16,7 @@ function Login() {
       </Contents>
     </Container>
   );
-}
+};
 
 export default Login;
 

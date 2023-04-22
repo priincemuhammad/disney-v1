@@ -1,40 +1,59 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useParams } from "react-router-dom";
+import db from "../Firebase";
 
-function Details() {
+const Details = () => {
+  const { id } = useParams();
+  const [movie, setMovie] = useState();
+  useEffect(() => {
+    db.collection("movies")
+      .doc(id)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          setMovie(doc.data());
+        }
+      });
+    console.log(movie);
+  }, []);
   return (
-    <Container>
-      <Background>
-        <img src="https://bit.ly/41ug5Sa" alt="bgImg" />
-      </Background>
-      <ImageTitle>
-        <img src="https://bit.ly/3UVXLia" alt="titleImg" />
-      </ImageTitle>
-      <Controls>
-        <PlayButton>
-          <img src="/images/play-icon-black.png" />
-          <span>PLAY</span>
-        </PlayButton>
-        <TrailerButton>
-          <img src="/images/play-icon-white.png" />
-          <span>Trailer</span>
-        </TrailerButton>
-        <AddButton>
-          <span>+</span>
-        </AddButton>
-        <GroupWatchButton>
-          <img src="/images/group-icon.png" />
-        </GroupWatchButton>
-      </Controls>
-      <SubTitle>2018 • 7m • Family, Fantasy, Kids, Animation</SubTitle>
-      <Description>
-        A Chinese mom who’s sad when her grown son leaves home gets another
-        chance at motherhood when one of her dumplings springs to life. But she
-        finds that nothing stays cute and small forever.
-      </Description>
-    </Container>
+    <>
+      {movie && (
+        <Container>
+          <Background>
+            <img src={movie.cardImg} alt="bgImg" />
+          </Background>
+          <ImageTitle>
+            <img src="https://bit.ly/3UVXLia" alt="titleImg" />
+          </ImageTitle>
+          <Controls>
+            <PlayButton>
+              <img src="/images/play-icon-black.png" />
+              <span>PLAY</span>
+            </PlayButton>
+            <TrailerButton>
+              <img src="/images/play-icon-white.png" />
+              <span>Trailer</span>
+            </TrailerButton>
+            <AddButton>
+              <span>+</span>
+            </AddButton>
+            <GroupWatchButton>
+              <img src="/images/group-icon.png" />
+            </GroupWatchButton>
+          </Controls>
+          <SubTitle>2018 • 7m • Family, Fantasy, Kids, Animation</SubTitle>
+          <Description>
+            A Chinese mom who’s sad when her grown son leaves home gets another
+            chance at motherhood when one of her dumplings springs to life. But
+            she finds that nothing stays cute and small forever.
+          </Description>
+        </Container>
+      )}
+    </>
   );
-}
+};
 
 export default Details;
 

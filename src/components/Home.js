@@ -3,8 +3,7 @@ import styled from "styled-components";
 import Slider from "./HomeSlider";
 import Viewers from "./Viewers";
 import Movies from "./Movies";
-import { getDocs } from "firebase/firestore";
-import colRef from "../Firebase";
+import db from "../Firebase";
 import { useDispatch } from "react-redux";
 import { setMovies } from "../features/movie/movieSlice";
 
@@ -12,16 +11,12 @@ const Home = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     // get data collections
-    getDocs(colRef)
-      .then((snapshot) => {
-        let allMovies = snapshot.docs.map((docs) => {
-          return { id: docs.id, ...docs.data() };
-        });
-        dispatch(setMovies(allMovies));
-      })
-      .catch((err) => {
-        console.log(err.message);
+    db.collection("movies").onSnapshot((snapshot) => {
+      let getMovies = snapshot.docs.map((doc) => {
+        return { id: doc.id, ...doc.data() };
       });
+      dispatch(setMovies(getMovies));
+    });
   }, [dispatch]);
 
   return (

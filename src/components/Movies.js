@@ -4,7 +4,7 @@ import { selectMovie } from "../features/movie/movieSlice";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-function Movies() {
+const Movies = () => {
   const moviesData = useSelector(selectMovie);
   return (
     <Container>
@@ -13,7 +13,7 @@ function Movies() {
         {moviesData &&
           moviesData.map((data) => {
             return (
-              <Link to="/details" key={data.id}>
+              <Link to={`/details/${data.id}`} key={data.id}>
                 <Wrapper>
                   <View src={data.cardImg} alt="img" />
                 </Wrapper>
@@ -23,7 +23,7 @@ function Movies() {
       </Contents>
     </Container>
   );
-}
+};
 
 export default Movies;
 
