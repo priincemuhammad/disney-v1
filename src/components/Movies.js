@@ -39,6 +39,7 @@ const Contents = styled.div`
   grid-template-columns: repeat(4, minmax(0, 1fr));
 `;
 const Wrapper = styled.div`
+  height: 100%;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: var(--shadow);
