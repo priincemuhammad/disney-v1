@@ -5,14 +5,14 @@ const Login = () => {
   return (
     <Container>
       <Contents>
-        <Logos src="/images/cta-logo-one.svg" />
+        <Logos src="/images/cta-logo-one.svg" alt="logo" />
         <SignUp>GET ALL THERE</SignUp>
         <Description>
           Get Premier Access to Raya and the Last Dragon for an additional fee
           with a Disney+ subscription. As of 03/26/21, the price of Disney+ and
           The Disney Bundle will increase by $1.
         </Description>
-        <Logos src="/images/cta-logo-two.png" />
+        <Logos src="/images/cta-logo-two.png" alt="logos" />
       </Contents>
     </Container>
   );

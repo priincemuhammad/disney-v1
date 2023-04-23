@@ -15,40 +15,35 @@ const Details = () => {
           setMovie(doc.data());
         }
       });
-    console.log(movie);
   }, []);
   return (
     <>
       {movie && (
         <Container>
           <Background>
-            <img src={movie.cardImg} alt="bgImg" />
+            <img src={movie.backgroundImg} alt="bgImg" />
           </Background>
           <ImageTitle>
-            <img src="https://bit.ly/3UVXLia" alt="titleImg" />
+            <img src={movie.titleImg} alt="titleImg" />
           </ImageTitle>
           <Controls>
             <PlayButton>
-              <img src="/images/play-icon-black.png" />
+              <img src="/images/play-icon-black.png" alt="img" />
               <span>PLAY</span>
             </PlayButton>
             <TrailerButton>
-              <img src="/images/play-icon-white.png" />
+              <img src="/images/play-icon-white.png" alt="img" />
               <span>Trailer</span>
             </TrailerButton>
             <AddButton>
               <span>+</span>
             </AddButton>
             <GroupWatchButton>
-              <img src="/images/group-icon.png" />
+              <img src="/images/group-icon.png" alt="img" />
             </GroupWatchButton>
           </Controls>
-          <SubTitle>2018 • 7m • Family, Fantasy, Kids, Animation</SubTitle>
-          <Description>
-            A Chinese mom who’s sad when her grown son leaves home gets another
-            chance at motherhood when one of her dumplings springs to life. But
-            she finds that nothing stays cute and small forever.
-          </Description>
+          <SubTitle>{movie.title}</SubTitle>
+          <Description>{movie.description}</Description>
         </Container>
       )}
     </>
