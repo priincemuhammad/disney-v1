@@ -7,6 +7,7 @@
 <h3>Tools and technology</h3>
 
 - React.js
-- Styled-Components
+- React router dom
 - Redux
 - Firebase (Authentication & Firestore)
+- Styled-Components
